@@ -27,7 +27,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "EducaTech API",
+        Title = "Universidade Positivo API",
         Version = "v1",
         Description = "API para tutoriais, fórum e desafios BDD"
     });
@@ -51,7 +51,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "EducaTech API v1");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Universidade Positivo API v1");
         options.RoutePrefix = string.Empty; // acessa direto na raiz
     });
 }
