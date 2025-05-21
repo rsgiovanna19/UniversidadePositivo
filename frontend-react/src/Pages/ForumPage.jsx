@@ -42,7 +42,7 @@ export default function ForumPage() {
       <div className="w-full bg-[#2a2a2c] p-4 flex justify-center items-center gap-8 shadow-md sticky top-0 z-50">
         <img src="/logo2.png" alt="EducaTech Logo" className="h-10 absolute left-4" />
         <button onClick={() => window.location.href = '/home'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Home</button>
-        <button onClick={() => window.location.href = '/desafios'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Desafios</button>
+        <button onClick={() => window.location.href = '/desafios'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Biomedicina</button>
         <button onClick={() => window.location.href = '/tutoriais'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Tutoriais</button>
       </div>
 

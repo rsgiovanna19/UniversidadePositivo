@@ -31,20 +31,23 @@ export default function MainPage() {
             Olá, {primeiroNome} 
           </h1>
           <p className="text-gray-300 mt-2">
-            Bem-vindo ao EducaTech — aprenda programação de forma simples e moderna.
+            Bem-vindo a Positivo — vamos iniciar?
           </p>
         </div>
 
         {/* Cards principais */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Desafios */}
+          {/* Biomedicina */}
           <div
-            onClick={() => navigate('/desafios')}
+            onClick={() => navigate('/Biomedicina')}
             className="cursor-pointer bg-[#1c1c1e] text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transform transition duration-300"
           >
-            <img src="/desafio.png" alt="Desafios" className="w-full h-40 object-cover rounded-lg mb-4" />
-            <h2 className="text-xl font-bold mb-2"> Desafios</h2>
-            <p className="text-white">Teste seus conhecimentos em desafios práticos.</p>
+            <img src="/Biomedicina.png" alt="Biomedicina" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold mb-2"> Biomedicina</h2>
+            <p className="text-white">🎓 Biomedicina – Torne-se o profissional que transforma a saúde com ciência! <br></br>
+              Descubra um universo de possibilidades na área da saúde! No curso de Biomedicina, você será preparado para atuar com diagnósticos
+               laboratoriais, pesquisas científicas, análises clínicas e inovação tecnológica. Com uma formação sólida e multidisciplinar, você poderá fazer a diferença na prevenção, detecção e tratamento de doenças.
+            </p>
           </div>
 
           {/* Tutoriais */}

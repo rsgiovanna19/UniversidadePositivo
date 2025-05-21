@@ -7,40 +7,40 @@ namespace UniversidadePositivo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DesafioController : ControllerBase
+    public class BiomedController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public DesafioController(AppDbContext context)
+        public BiomedController(AppDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Desafio>>> GetDesafios()
+        public async Task<ActionResult<IEnumerable<Biomed>>> GetBiomedicina()
         {
-            return await _context.Desafios
+            return await _context.Biomedicina
                                  .OrderByDescending(d => d.DataCriacao)
                                  .ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Desafio>> GetDesafio(int id)
+        public async Task<ActionResult<Biomed>> GetBiomed(int id)
         {
-            var desafio = await _context.Desafios.FindAsync(id);
+            var desafio = await _context.Biomedicina.FindAsync(id);
             return desafio == null ? NotFound() : desafio;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Desafio>> PostDesafio(Desafio desafio)
+        public async Task<ActionResult<Biomed>> PostBiomed(Biomed desafio)
         {
-            _context.Desafios.Add(desafio);
+            _context.Biomedicina.Add(desafio);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetDesafio), new { id = desafio.Id }, desafio);
+            return CreatedAtAction(nameof(GetBiomed), new { id = desafio.Id }, desafio);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDesafio(int id, Desafio desafio)
+        public async Task<IActionResult> PutBiomed(int id, Biomed desafio)
         {
             if (id != desafio.Id)
                 return BadRequest();
@@ -51,13 +51,13 @@ namespace UniversidadePositivo.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDesafio(int id)
+        public async Task<IActionResult> DeleteBiomed(int id)
         {
-            var desafio = await _context.Desafios.FindAsync(id);
+            var desafio = await _context.Biomedicina.FindAsync(id);
             if (desafio == null)
                 return NotFound();
 
-            _context.Desafios.Remove(desafio);
+            _context.Biomedicina.Remove(desafio);
             await _context.SaveChangesAsync();
             return NoContent();
         }

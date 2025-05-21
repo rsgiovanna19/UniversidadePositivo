@@ -2,7 +2,7 @@ using System;
 
 namespace UniversidadePositivo.Models
 {
-public class Desafio
+public class Biomed
 {
     public int Id { get; set; }
     public string Titulo { get; set; }
