@@ -3,17 +3,19 @@ import React, { useState } from 'react';
 export default function ForumPage() {
   const [topicos, setTopicos] = useState([
     {
-      titulo: 'Como usar funções anônimas?',
-      autor: 'alice123',
-      mensagens: ['Você pode atribuir uma função anônima a uma variável.', 'Veja este exemplo: const soma = function(a, b) { return a + b; }']
+      titulo: 'Quais são os campus disponíveis para o meu curso?',
+      autor: 'Universidade Positivo',
+      mensagens: ['Os nossos campus disponíveis estão espalhados por todo o Brasil!',
+        'Em Curitiba, estamos localizados no Campus Ecoville, Osório e Santos Andrade']
     },
     {
-      titulo: 'Qual a diferença entre let e var?',
-      autor: 'joao_dev',
-      mensagens: ['let tem escopo de bloco e var tem escopo de função.']
+      titulo: 'Por qual meio de comunicação posso entrar em contato com a Universidade Positivo?',
+      autor: 'Universidade Positivo',
+      mensagens: ['Os estudantes podem entrar em contato com a Universidade Positivo por diversos canais oficiais, como telefone, e-mail, WhatsApp institucional e redes sociais.',
+        'Além disso, o Portal do Aluno e o app da Universidade também oferecem suporte e informações úteis para os acadêmicos.']
+
     }
   ]);
-
   const [novoTopico, setNovoTopico] = useState({ titulo: '', autor: '', mensagem: '' });
   const [topicoSelecionado, setTopicoSelecionado] = useState(null);
 
@@ -47,9 +49,9 @@ export default function ForumPage() {
       </div>
 
       <div className="max-w-3xl mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-4">Fórum de Discussão</h1>
+        <h1 className="text-2xl font-bold mb-4">Fórum</h1>
 
-        {!topicoSelecionado ? (
+        {topicoSelecionado === null ? (
           <>
             <div className="bg-[#3a3a3c] p-4 rounded-xl mb-6">
               <h2 className="text-lg font-semibold mb-2">Novo tópico</h2>

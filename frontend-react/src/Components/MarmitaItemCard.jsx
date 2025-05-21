@@ -1,4 +1,4 @@
-import { useState } from "react";
+/*import { useState } from "react";
 import Tilt from 'react-parallax-tilt';
 
 
@@ -47,4 +47,4 @@ function MarmitaItemCard({ marmita, setItem, setQuant}) {
   );
 }
 
-export default MarmitaItemCard;
+export default MarmitaItemCard;*/

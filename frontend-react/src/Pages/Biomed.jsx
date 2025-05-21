@@ -9,13 +9,13 @@ export default function Biomedicina() {
 
   const Biomedicina = [
     {
-      titulo: 'Biomed 1: Funções Básicas em JavaScript',
+      titulo: 'Conheça o curso',
       descricao: 'Crie uma função que retorne se um número é par ou ímpar. Use log(...) para imprimir a saída.',
       placeholder: '// Escreva seu código aqui...\n// Dica: use log(verificarPar(4)); para ver o resultado',
       resposta: 'function verificarPar(numero) {\n  return numero % 2 === 0 ? "par" : "ímpar";\n}\nlog(verificarPar(4));'
     },
     {
-      titulo: 'Biomed 2: Manipulação de Arrays',
+      titulo: 'Primeiro período: Manipulação de Arrays',
       descricao: 'Ordene um array de números em ordem crescente. Use log(...) para imprimir a saída.',
       placeholder: '// Escreva seu código aqui...\n// Dica: use log(ordenarArray([5, 3, 1]));',
       resposta: 'function ordenarArray(arr) {\n  return arr.sort((a, b) => a - b);\n}\nlog(ordenarArray([5, 3, 1]));'

@@ -1,4 +1,4 @@
-import axios from "axios";
+/*import axios from "axios";
 import { useEffect, useState } from "react";
 import MarmitaItemCard from "./MarmitaItemCard.jsx";
 import { Navigate } from "react-router-dom";
@@ -57,4 +57,4 @@ function MarmitaCard({ searchTerm }) {
   );
 }
 
-export default MarmitaCard;
+export default MarmitaCard;*/
