@@ -49,7 +49,7 @@ export default function MainPage() {
               Descubra um universo de possibilidades na área da saúde! No curso de Biomedicina, você será preparado para atuar com diagnósticos laboratoriais, pesquisas científicas, análises clínicas e inovação tecnológica.
             </p>
           </div>
-
+              
           {/* Tutoriais */}
           <div
             onClick={() => navigate('/tutoriais')}
