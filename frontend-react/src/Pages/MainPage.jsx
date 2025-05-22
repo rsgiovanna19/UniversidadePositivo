@@ -12,14 +12,14 @@ export default function MainPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1c1c1e] to-[#3a3a3c] text-white px-6 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-800 to-blue-600 text-white px-6 py-12">
       <div className="max-w-6xl mx-auto">
 
         {/* Botão de Logoff */}
         <div className="flex justify-end mb-6">
           <button
             onClick={handleLogout}
-            className="bg-[#3a3a3c] hover:bg-black text-white font-medium py-2 px-4 rounded transition"
+            className="bg-white text-blue-700 font-medium py-2 px-4 rounded hover:bg-blue-100 transition"
           >
             Sair
           </button>
@@ -28,10 +28,10 @@ export default function MainPage() {
         {/* Cabeçalho */}
         <div className="mb-10">
           <h1 className="text-3xl md:text-4xl font-bold flex items-center gap-2">
-            Olá, {primeiroNome} 
+            Olá, Estudante!
           </h1>
-          <p className="text-gray-300 mt-2">
-            Bem-vindo a Positivo — vamos iniciar?
+          <p className="text-white/80 mt-2">
+            Bem-vindo à Positivo! Vamos iniciar?
           </p>
         </div>
 
@@ -40,34 +40,34 @@ export default function MainPage() {
           {/* Biomedicina */}
           <div
             onClick={() => navigate('/Biomedicina')}
-            className="cursor-pointer bg-[#1c1c1e] text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transform transition duration-300"
+            className="cursor-pointer bg-white text-blue-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transform transition duration-300"
           >
             <img src="/Biomedicina.png" alt="Biomedicina" className="w-full h-40 object-cover rounded-lg mb-4" />
-            <h2 className="text-xl font-bold mb-2"> Biomedicina</h2>
-            <p className="text-white">🎓 Biomedicina – Torne-se o profissional que transforma a saúde com ciência! <br></br>
-              Descubra um universo de possibilidades na área da saúde! No curso de Biomedicina, você será preparado para atuar com diagnósticos
-               laboratoriais, pesquisas científicas, análises clínicas e inovação tecnológica. Com uma formação sólida e multidisciplinar, você poderá fazer a diferença na prevenção, detecção e tratamento de doenças.
+            <h2 className="text-xl font-bold mb-2">Biomedicina</h2>
+            <p>
+              🎓 Biomedicina – Torne-se o profissional que transforma a saúde com ciência! <br />
+              Descubra um universo de possibilidades na área da saúde! No curso de Biomedicina, você será preparado para atuar com diagnósticos laboratoriais, pesquisas científicas, análises clínicas e inovação tecnológica.
             </p>
           </div>
 
           {/* Tutoriais */}
           <div
             onClick={() => navigate('/tutoriais')}
-            className="cursor-pointer bg-[#1c1c1e] text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transform transition duration-300"
+            className="cursor-pointer bg-white text-blue-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transform transition duration-300"
           >
             <img src="/tutoriais.png" alt="Tutoriais" className="w-full h-40 object-cover rounded-lg mb-4" />
-            <h2 className="text-xl font-bold mb-2"> Tutoriais</h2>
-            <p className="text-white">Aprenda com tutoriais passo a passo sobre linguagens de programação.</p>
+            <h2 className="text-xl font-bold mb-2">Tutoriais</h2>
+            <p>Aprenda com tutoriais passo a passo sobre linguagens de programação.</p>
           </div>
 
           {/* Fórum */}
           <div
             onClick={() => navigate('/forumpage')}
-            className="cursor-pointer bg-[#1c1c1e] text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transform transition duration-300"
+            className="cursor-pointer bg-white text-blue-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transform transition duration-300"
           >
             <img src="/forum.png" alt="Fórum" className="w-full h-40 object-cover rounded-lg mb-4" />
-            <h2 className="text-xl font-bold mb-2"> Fórum</h2>
-            <p className="text-white-600">Tire dúvidas, compartilhe código e ajude outros estudantes.</p>
+            <h2 className="text-xl font-bold mb-2">Fórum</h2>
+            <p>Tire dúvidas, compartilhe código e ajude outros estudantes.</p>
           </div>
         </div>
       </div>

@@ -11,7 +11,6 @@ namespace UniversidadePositivo.Data
         public DbSet<Tutorial> Tutoriais { get; set; }
         public DbSet<Topico> Topicos { get; set; }
         public DbSet<Resposta> Respostas { get; set; }
-        public DbSet<Biomed> Biomedicina { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
         //mapeamento entre a resposta do forum e o tópico
