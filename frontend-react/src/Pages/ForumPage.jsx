@@ -65,8 +65,11 @@ const adicionarTopico = async () => { //add as novas perguntas no db
       <div className="w-full bg-[#2a2a2c] p-4 flex justify-center items-center gap-8 shadow-md sticky top-0 z-50">
         <img src="/logo2.png" alt="Logo" className="h-10 absolute left-4" />
         <button onClick={() => window.location.href = '/home'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Home</button>
-        <button onClick={() => window.location.href = '/Biomedicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Biomedicina</button>
-        <button onClick={() => window.location.href = '/Medicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Medicina</button>
+        <button onClick={() => window.location.href = '/cursos'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Cursos</button>
+        <button onClick={() => window.location.href = '/filosofia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Filosofia</button>
+        <button onClick={() => window.location.href = '/psicologia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Psicologia</button>
+        <button onClick={() => window.location.href = '/biomedicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Biomedicina</button>
+        <button onClick={() => window.location.href = '/medicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Medicina</button>
         <button onClick={() => window.location.href = '/tutoriais'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Tutoriais</button>
       </div>
 
