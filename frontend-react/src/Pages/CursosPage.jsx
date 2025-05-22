@@ -1,5 +1,5 @@
-// src/pages/CursosPage.jsx
 import { useNavigate } from 'react-router-dom';
+import Footer from '../Components/Footer';
 
 export default function CursosPage() {
   const navigate = useNavigate();
@@ -12,9 +12,19 @@ export default function CursosPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-blue-50 text-blue-900 px-6 py-12">
+    <div className="min-h-screen bg-blue-50 text-blue-900 px-6 py-12 flex flex-col">
       <h1 className="text-3xl font-bold mb-6 text-center">Cursos Disponíveis</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Botão Voltar para Home */}
+      <div className="flex justify mb-2">
+        <button
+          onClick={() => navigate('/home')}
+          className="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-300"
+        >
+          Voltar
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 flex-grow">
         {cursos.map((curso) => (
           <div
             key={curso.nome}
@@ -26,6 +36,7 @@ export default function CursosPage() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

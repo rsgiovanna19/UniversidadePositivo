@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import Footer from '../Components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 export default function Psicologia() {
+  const navigate = useNavigate();
   const [CursoPsicologia, setPsicologiaSelecionado] = useState(null);
   const [filtro, setFiltro] = useState('');
 
@@ -50,14 +53,19 @@ export default function Psicologia() {
         <img src="/logo2.png" alt="Logo" className="h-10" />
         <div className="flex-1 flex justify-center gap-4">
           <button onClick={() => window.location.href = '/home'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Home</button>
-        <button onClick={() => window.location.href = '/filosofia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Filosofia</button>
-        <button onClick={() => window.location.href = '/psicologia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Psicologia</button>
           <button onClick={() => window.location.href = '/tutoriais'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Tutoriais</button>
+          <button onClick={() => window.location.href = '/cursos'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Cursos</button>
           <button onClick={() => window.location.href = '/forum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
-          <button onClick={() => window.location.href = '/bioPsicologia'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">BioPsicologia</button>
         </div>
       </div>
-
+{/* Botão Voltar para Home */}
+      <div className="flex justify-start px-8 mt-8 mb-4">
+        <button
+          onClick={() => navigate('/cursos')}
+          className="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-300"
+        >Voltar
+        </button>
+      </div>
       <div className="p-8 max-w-4xl mx-auto">
         {!CursoPsicologia ? (
           <>
@@ -104,6 +112,7 @@ export default function Psicologia() {
           </div>
         )}
       </div>
+    <Footer />
     </div>
   );
 }

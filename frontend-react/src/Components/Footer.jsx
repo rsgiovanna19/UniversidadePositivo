@@ -1,19 +1,19 @@
 import React from 'react';
 
-function Footer() {
+export default function Footer() {
   return (
-    <footer style={{ backgroundColor: '#F6F3EA' }} className="text-gray-800 py-6 mt-8">
+    <footer style={{ backgroundColor: '#f3f4f6' }} className="text-gray-800 py-6 mt-8">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center gap-12 text-center md:text-left">
         {/* Logo + Nome */}
         <div className="flex items-center gap-3">
           <img
-            src="/leozitos marmitaria.png"
+            src="/logo.png"
             alt="Logo"
             className="h-14 w-auto object-contain"
           />
           <div>
-            <h2 className="text-lg font-bold">Marmitaria Leozitos</h2>
-            <p className="text-sm text-gray-600">Comida caseira com amor desde 2023</p>
+            <h2 className="text-lg font-bold">Universidade Positivo</h2>
+            <p className="text-sm text-gray-600">Realizando profissões!</p>
           </div>
         </div>
 
@@ -33,10 +33,9 @@ function Footer() {
       </div>
 
       <div className="text-center mt-6 text-sm text-gray-500">
-        © 2025 Marmitaria Leozitos. Todos os direitos reservados.
+        © 2025 Universidade Positivo. Todos os direitos reservados.
       </div>
     </footer>
   );
 }
 
-export default Footer;

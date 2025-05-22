@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import Footer from '../Components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 export default function Medicina() {
+  const navigate = useNavigate();
   const [CursoMed, setMedSelecionado] = useState(null);
   const [filtro, setFiltro] = useState('');
 
@@ -50,14 +53,19 @@ export default function Medicina() {
         <img src="/logo2.png" alt="Logo" className="h-10" />
         <div className="flex-1 flex justify-center gap-4">
           <button onClick={() => window.location.href = '/home'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Home</button>
-        <button onClick={() => window.location.href = '/filosofia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Filosofia</button>
-        <button onClick={() => window.location.href = '/psicologia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Psicologia</button>
           <button onClick={() => window.location.href = '/tutoriais'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Tutoriais</button>
+          <button onClick={() => window.location.href = '/cursos'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Cursos</button>
           <button onClick={() => window.location.href = '/forum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
-          <button onClick={() => window.location.href = '/biomedicina'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Biomedicina</button>
         </div>
       </div>
-
+  {/* Botão Voltar para Home */}
+      <div className="flex justify-start px-8 mt-8 mb-4">
+        <button
+          onClick={() => navigate('/cursos')}
+          className="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-300"
+        >Voltar
+        </button>
+      </div>
       <div className="p-8 max-w-4xl mx-auto">
         {!CursoMed ? (
           <>
@@ -70,6 +78,7 @@ export default function Medicina() {
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
             />
+
             <div className="bg-white p-4 rounded-xl shadow max-h-[480px] overflow-y-auto">
               <ul className="space-y-4">
                 {MedicinaFiltrados.map((pergunta, index) => (
@@ -98,12 +107,11 @@ export default function Medicina() {
             </button>
             <h2 className="text-xl font-semibold mb-2">{CursoMed.titulo}</h2>
             <p className="text-blue-800 mb-4">{CursoMed.descricao}</p>
-            <pre className="bg-blue-50 text-sm p-4 rounded overflow-auto text-blue-900 whitespace-pre-wrap font-mono">
-              {CursoMed.resposta}
-            </pre>
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
+

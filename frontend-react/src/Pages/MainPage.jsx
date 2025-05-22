@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -25,29 +27,35 @@ export default function MainPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-blue-50 px-6 py-12 text-blue-900">
-      <h1 className="text-5xl font-bold text-center mb-16">Bem-vindo à Positivo! Vamos começar?</h1>
+    <div className="min-h-screen flex flex-col bg-blue-900 text-blue-100">
+      <Header /> {/* cabeçalho fixo no topo */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {cards.map((card) => (
-          <div
-            key={card.title}
-            onClick={() => navigate(card.route)}
-            className="cursor-pointer bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300"
-          >
-            <img
-              src={card.image}
-              alt={card.title}
-              className="rounded-t-2xl h-48 w-full object-cover"
-            />
-            <div className="p-6 h-48 flex flex-col justify-between">
-              <h2 className="text-3xl font-bold mb-2">{card.title}</h2>
-              <p className="text-lg text-gray-700">{card.description}</p>
+      <main className="px-6 py-12 flex-grow">
+        <h4 className="text-5xl font-bold text-center mb-16">
+          Bem-vindo à Universidade Positivo! Vamos começar?
+        </h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {cards.map((card) => (
+            <div
+              key={card.title}
+              onClick={() => navigate(card.route)}
+              className="cursor-pointer bg-blue-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300"
+            >
+              <img
+                src={card.image}
+                alt={card.title}
+                className="rounded-t-2xl h-48 w-full object-cover"
+              />
+              <div className="p-6 h-48 flex flex-col justify-between">
+                <h4 className="text-blue-100 font-bold mb-2 text-4xl">{card.title}</h4>
+                <p className="text-lg text-blue-200">{card.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }
-

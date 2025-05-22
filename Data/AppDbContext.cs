@@ -8,12 +8,11 @@ namespace UniversidadePositivo.Data
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Tutorial> Tutoriais { get; set; }
         public DbSet<Topico> Topicos { get; set; }
         public DbSet<Resposta> Respostas { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
-        //mapeamento entre a resposta do forum e o tópico
+        //mapeamento entre a resposta do forum e a resposta 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Resposta>()

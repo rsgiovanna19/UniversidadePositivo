@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../Components/Footer';
 
 export default function TutoriaisPage() {
+  const navigate = useNavigate();
   const [tutorialSelecionado, setTutorialSelecionado] = useState(null);
   const [filtro, setFiltro] = useState('');
 
@@ -32,62 +35,69 @@ export default function TutoriaisPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#1c1c1e] text-white">
-      <div className="w-full bg-[#2a2a2c] p-4 flex justify-center items-center gap-8 shadow-md sticky top-0 z-50">
+    <div className="min-h-screen bg-blue-50 text-blue-900">
+      <div className="w-full bg-blue-700 p-4 flex justify-center items-center gap-8 shadow-md sticky top-0 z-50 text-white">
         <img src="/logo2.png" alt="EducaTech Logo" className="h-10 absolute left-4" />
-        <button onClick={() => window.location.href = '/home'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Home</button>
-        <button onClick={() => window.location.href = '/filosofia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Filosofia</button>
-        <button onClick={() => window.location.href = '/psicologia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Psicologia</button>         
-        <button onClick={() => window.location.href = '/medicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Medicina</button>        
-        <button onClick={() => window.location.href = '/biomedicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Biomedicina</button>
-        <button onClick={() => window.location.href = '/forum'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Fórum</button>
+        <button onClick={() => window.location.href = '/home'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Home</button>
+        <button onClick={() => window.location.href = '/cursos'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Cursos</button>
+        <button onClick={() => window.location.href = '/Fórum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
+      </div>
+
+    {/* Botão Voltar para Home */}
+      <div className="flex justify-start px-8 mt-8 mb-4">
+        <button
+          onClick={() => navigate('/home')}
+          className="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-300"
+        >Voltar
+        </button>
       </div>
 
       <div className="p-8 max-w-4xl mx-auto">
         {!tutorialSelecionado ? (
           <>
             <h1 className="text-3xl font-bold flex items-center gap-2 mb-1">
-            Tutoriais Interativos
+              Tutoriais Interativos
             </h1>
-            <p className="text-gray-300 mb-4">Aprenda programação com tutoriais simples e didáticos.</p>
+            <p className="text-blue-800 mb-4">Aprenda programação com tutoriais simples e didáticos.</p>
             <input
               type="text"
-              placeholder="Pesquisar tutorial..."
-              className="w-full p-3 mb-6 rounded bg-white text-black outline-none"
+              placeholder="Pesquisar x..."
+              className="w-full p-3 mb-6 rounded border border-blue-300 text-blue-900 outline-none"
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
             />
-            <div className="bg-[#2a2a2c] p-4 rounded-xl shadow max-h-[480px] overflow-y-auto">
+            <div className="bg-white p-4 rounded-xl shadow max-h-[480px] overflow-y-auto">
               <ul className="space-y-4">
                 {tutoriaisFiltrados.map((tutorial, index) => (
                   <li
                     key={index}
-                    className="bg-[#3a3a3c] text-white rounded-xl p-5 shadow hover:shadow-lg transition cursor-pointer flex justify-between items-center"
+                    className="bg-blue-100 rounded-xl p-5 shadow hover:bg-blue-200 transition cursor-pointer flex justify-between items-center"
                     onClick={() => setTutorialSelecionado(tutorial)}
                   >
-                    <h2 className="text-lg font-bold">{tutorial.titulo}</h2>
-                    <span className="text-xl text-black">➤</span>
+                    <h2 className="text-lg font-bold text-blue-900">{tutorial.titulo}</h2>
+                    <span className="text-xl text-blue-700">➤</span>
                   </li>
                 ))}
               </ul>
             </div>
           </>
         ) : (
-          <div className="bg-white text-black p-6 rounded-xl shadow">
+          <div className="bg-white text-blue-900 p-6 rounded-xl shadow">
             <button
               onClick={() => setTutorialSelecionado(null)}
-              className="text-sm text-black flex items-center gap-1 mb-4 group"
+              className="text-sm text-blue-700 flex items-center gap-1 mb-4 hover:underline"
             >
               <span className="text-lg">←</span>
-              <span className="group-hover:underline">Voltar</span>
+              <span>Voltar</span>
             </button>
             <h2 className="text-xl font-bold mb-4">{tutorialSelecionado.titulo}</h2>
-            <pre className="whitespace-pre-wrap bg-gray-100 p-4 rounded text-sm font-mono text-black">
+            <pre className="whitespace-pre-wrap bg-blue-50 p-4 rounded text-sm font-mono text-blue-900">
               {tutorialSelecionado.conteudo}
             </pre>
           </div>
         )}
       </div>
+  <Footer />
     </div>
   );
 }
