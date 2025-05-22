@@ -1,4 +1,4 @@
-import { useState } from 'react';
+/*import { useState } from 'react';
 import {
   ShoppingCartIcon,
   MagnifyingGlassIcon,
@@ -23,12 +23,12 @@ function Header({ onSearch }) {
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6 flex justify-between items-center font-sans">
-        {/* Logo */}
+        {/* Logo }
         <div className="flex items-center gap-3">
           <img src="/leozitos marmitaria.png" alt="Logo" className="h-16 w-auto object-contain" />
         </div>
 
-        {/* Botão mobile */}
+        {/* Botão mobile }
         <button
           className="cs:hidden"
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
@@ -36,14 +36,14 @@ function Header({ onSearch }) {
           <Bars3Icon className="h-6 w-6 text-gray-700" />
         </button>
 
-        {/* Menu desktop */}
+        {/* Menu desktop }
         <nav className="hidden cs:flex gap-8 text-black font-medium absolute left-1/2 transform -translate-x-1/2">
           <a href="/home" className="hover:text-red-500 transition">Marmitas</a>
           <a href="/About" className="hover:text-red-500 transition">Sobre nós</a>
           {userType == 1 && <a href="/cadastrar-marmita" className="hover:text-red-500 transition">Cadastrar Marmita</a>}
         </nav>
 
-        {/* Ícones */}
+        {/* Ícones }
         <div className="flex items-center gap-4">
           <SearchBar onSearch={onSearch} />
           <a href="/endereco"><MapPinIcon className="h-5 w-5 text-gray-700 cursor-pointer" /></a>
@@ -61,7 +61,7 @@ function Header({ onSearch }) {
         </div>
       </header>
 
-      {/* Menu mobile dropdown */}
+      {/* Menu mobile dropdown }
       {isMobileMenuOpen && (
         <div className="cs:hidden fixed top-20 left-0 w-full bg-white shadow-md z-40 py-4 px-6 space-y-4 text-black font-medium">
           <a href="/home" className="block hover:text-red-500 transition">Marmitas</a>
@@ -70,7 +70,7 @@ function Header({ onSearch }) {
         </div>
       )}
 
-      {/* Painel lateral do carrinho */}
+      {/* Painel lateral do carrinho }
       <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 transform transition-transform duration-300 ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}>
   <div className="p-4 flex justify-between items-center border-b">
     <h2 className="text-xl font-bold">Seu carrinho</h2>
@@ -112,7 +112,7 @@ function Header({ onSearch }) {
           ))}
         </ul>
 
-        {/* Total e botão finalizar */}
+        {/* Total e botão finalizar }
         <div className="mt-6 border-t pt-4 text-right">
           <p className="text-lg font-bold mb-4">Total: R$ {total.toFixed(2)}</p>
           <button
@@ -131,7 +131,7 @@ function Header({ onSearch }) {
   </div>
 </div>
 
-      {/* Fundo escurecido */}
+      {/* Fundo escurecido }
       {isCartOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 z-40"
@@ -142,4 +142,4 @@ function Header({ onSearch }) {
   );
 }
 
-export default Header;
+export default Header;*/

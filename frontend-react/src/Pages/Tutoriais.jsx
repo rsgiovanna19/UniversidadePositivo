@@ -36,6 +36,7 @@ export default function TutoriaisPage() {
       <div className="w-full bg-[#2a2a2c] p-4 flex justify-center items-center gap-8 shadow-md sticky top-0 z-50">
         <img src="/logo2.png" alt="EducaTech Logo" className="h-10 absolute left-4" />
         <button onClick={() => window.location.href = '/home'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Home</button>
+        <button onClick={() => window.location.href = '/Medicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Medicina</button>        
         <button onClick={() => window.location.href = '/Biomedicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Biomedicina</button>
         <button onClick={() => window.location.href = '/forumpage'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Fórum</button>
       </div>

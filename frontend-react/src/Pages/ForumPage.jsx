@@ -19,18 +19,38 @@ export default function ForumPage() {
   const [novoTopico, setNovoTopico] = useState({ titulo: '', autor: '', mensagem: '' });
   const [topicoSelecionado, setTopicoSelecionado] = useState(null);
 
-  const adicionarTopico = () => {
-    if (!novoTopico.titulo || !novoTopico.autor || !novoTopico.mensagem) return;
+const adicionarTopico = async () => { //add as novas perguntas no db
+  if (!novoTopico.titulo || !novoTopico.autor || !novoTopico.mensagem) return;
+  const novoTopicoParaEnviar = {
+    titulo: novoTopico.titulo,
+    conteudo: novoTopico.mensagem, 
+    autor: novoTopico.autor
+  };
+  try {
+    const response = await fetch("http://localhost:5000/api/Topico", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(novoTopicoParaEnviar)
+    });
+    if (!response.ok) {
+      throw new Error("Erro ao salvar o tópico");
+    }
+    const topicoSalvo = await response.json();
     setTopicos([
       ...topicos,
       {
-        titulo: novoTopico.titulo,
-        autor: novoTopico.autor,
-        mensagens: [novoTopico.mensagem]
+        titulo: topicoSalvo.titulo,
+        autor: topicoSalvo.autor,
+        mensagens: [topicoSalvo.conteudo]
       }
     ]);
     setNovoTopico({ titulo: '', autor: '', mensagem: '' });
-  };
+  } catch (error) {
+    console.error("Erro ao salvar no banco:", error);
+  }
+};
 
   const adicionarMensagem = (mensagem) => {
     if (!mensagem) return;
@@ -39,12 +59,14 @@ export default function ForumPage() {
     setTopicos(novosTopicos);
   };
 
+  //atualizar com os novos cursos
   return (
     <div className="min-h-screen bg-[#1c1c1e] text-white">
       <div className="w-full bg-[#2a2a2c] p-4 flex justify-center items-center gap-8 shadow-md sticky top-0 z-50">
-        <img src="/logo2.png" alt="EducaTech Logo" className="h-10 absolute left-4" />
+        <img src="/logo2.png" alt="Logo" className="h-10 absolute left-4" />
         <button onClick={() => window.location.href = '/home'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Home</button>
         <button onClick={() => window.location.href = '/Biomedicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Biomedicina</button>
+        <button onClick={() => window.location.href = '/Medicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Medicina</button>
         <button onClick={() => window.location.href = '/tutoriais'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Tutoriais</button>
       </div>
 
