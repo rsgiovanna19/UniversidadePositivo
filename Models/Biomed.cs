@@ -1,4 +1,4 @@
-using System;
+/*using System;
 
 namespace UniversidadePositivo.Models
 {
@@ -12,4 +12,4 @@ public class Biomed
     public string? SolucaoEsperada { get; set; }
     public DateTime DataCriacao { get; set; } = DateTime.Now;
 }
-}
+}*/
