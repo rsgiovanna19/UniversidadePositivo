@@ -18,10 +18,7 @@ export default function Login() {
   const { message, clearMessage } = useMessage();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: '',
-    senha: ''
-  });
+  const [formData, setFormData] = useState({ email: '', senha: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +29,7 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5294/api/usuario/validar-login", formData);
+      const response = await axios.post("http://localhost:5000/api/usuario/validar-login", formData);
       const user = response.data;
 
       localStorage.setItem("userEmail", user.email);
@@ -47,47 +44,51 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1c1c1e] to-[#3a3a3c] px-4">
+    <div className="min-h-screen bg-blue-700 flex items-center justify-center px-4 py-8 text-blue-900">
       {errorMsg && <ErrorMessage msg={errorMsg} onClose={clearError} />}
       {message && <Message msg={message} onClose={clearMessage} />}
 
       <motion.div
-        className="w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow border border-gray-200 grid grid-cols-1 md:grid-cols-2"
+        className="w-full max-w-6xl bg-white rounded-3xl shadow-xl border border-blue-100 grid grid-cols-10 overflow-hidden"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
       >
-        {/* Lado esquerdo com logo */}
-        <div className="hidden md:flex items-center justify-center bg-white p-12">
+        {/* Lado esquerdo com imagem */}
+        <div className="col-span-4 bg-blue-100 hidden md:flex items-center justify-center">
           <img
             src="/logo.png"
-            alt="EducaTech Logo"
-            className="w-100 object-contain"
+            alt="Logo Biomedicina"
+            className="w-72 object-contain"
           />
         </div>
 
-        {/* Lado direito: formulário */}
-        <div className="p-10 flex flex-col justify-center">
-          {/* Logo topo (mobile) */}
-          <div className="flex justify-center mb-8 md:hidden">
+        {/* Formulário */}
+        <div className="col-span-10 md:col-span-6 p-10 flex flex-col justify-center">
+          <div className="flex justify-center mb-6 md:hidden">
             <img
               src="/logo.png"
-              alt="EducaTech Logo"
+              alt="Logo Biomedicina"
               className="h-20 object-contain"
             />
           </div>
 
-          <h1 className="text-3xl font-semibold text-[#1d1d1f] mb-6 text-center">Bem-vindo de volta</h1>
+          <h2 className="text-3xl font-semibold text-blue-900 text-center mb-4">
+            Acesso ao Sistema
+          </h2>
+          <p className="text-center text-gray-500 mb-8">
+            Faça login com suas credenciais institucionais
+          </p>
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-sm text-gray-700 mb-1">Email</label>
+              <label className="block text-sm text-gray-700 mb-1">Email institucional</label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black outline-none transition"
+                className="w-full px-4 py-2 border border-blue-300 rounded-xl focus:ring-2 focus:ring-blue-700 outline-none transition text-blue-900"
               />
             </div>
 
@@ -97,19 +98,19 @@ export default function Login() {
                 type="password"
                 value={formData.senha}
                 onChange={e => setFormData({ ...formData, senha: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black outline-none transition"
+                className="w-full px-4 py-2 border border-blue-300 rounded-xl focus:ring-2 focus:ring-blue-700 outline-none transition text-blue-900"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-black text-white py-2 rounded-xl hover:opacity-90 transition"
+              className="w-full bg-blue-700 text-white py-2 rounded-xl hover:bg-blue-800 transition"
             >
               Entrar
             </button>
 
             <p className="text-center text-sm text-gray-500">
-              Ainda não tem conta? <a href="/cadastro" className="underline text-black">Cadastre-se</a>
+              Ainda não possui uma conta? <a href="/cadastro" className="underline text-blue-700">Cadastre-se aqui</a>
             </p>
           </form>
         </div>

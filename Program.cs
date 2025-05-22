@@ -29,7 +29,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "Universidade Positivo API",
         Version = "v1",
-        Description = "API para tutoriais, fórum e desafios BDD"
+        Description = "API para gerenciamento UP"
     });
 });
 

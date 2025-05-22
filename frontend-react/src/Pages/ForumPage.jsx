@@ -25,6 +25,9 @@ export default function ForumPage() {
   ]);
   const navigate = useNavigate();
 
+  // Novo estado para controlar o texto da resposta
+  const [respostaTexto, setRespostaTexto] = useState('');
+
   useEffect(() => {
     const fetchTopicos = async () => {
       try {
@@ -33,37 +36,33 @@ export default function ForumPage() {
           throw new Error("Erro ao carregar os tópicos");
         }
         const data = await response.json();
-        // Mapeia os dados da API para o formato esperado
         const topicosFormatados = data.map(t => ({
           titulo: t.titulo,
           autor: t.autor,
-          mensagens: [t.conteudo || ''] // mensagem inicial
+          mensagens: [t.conteudo || '']
         }));
         if (topicosFormatados.length > 0) {
           setTopicos(topicosFormatados);
         }
       } catch (error) {
         console.error("Erro ao carregar os tópicos:", error);
-        // Se erro, mantém os tópicos padrão iniciais
       }
     };
 
     fetchTopicos();
   }, []);
 
-  const adicionarTopico = async () => { 
+  const adicionarTopico = async () => {
     if (!novoTopico.titulo || !novoTopico.autor || !novoTopico.mensagem) return;
     const novoTopicoParaEnviar = {
       titulo: novoTopico.titulo,
-      conteudo: novoTopico.mensagem, 
+      conteudo: novoTopico.mensagem,
       autor: novoTopico.autor
     };
     try {
       const response = await fetch("http://localhost:5000/api/Topico", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novoTopicoParaEnviar)
       });
       if (!response.ok) {
@@ -91,9 +90,14 @@ export default function ForumPage() {
     setTopicos(novosTopicos);
   };
 
+  const enviarResposta = () => {
+    if (!respostaTexto.trim()) return;
+    adicionarMensagem(respostaTexto.trim());
+    setRespostaTexto('');
+  };
+
   return (
     <div className="min-h-screen bg-blue-50 text-blue-900">
-      {/* Navbar azul */}
       <div className="w-full bg-blue-700 p-4 flex justify-center items-center gap-8 shadow-md sticky top-0 z-50 text-white">
         <img src="/logo2.png" alt="Logo" className="h-10 absolute left-4" />
         <button onClick={() => window.location.href = '/home'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Home</button>
@@ -104,7 +108,6 @@ export default function ForumPage() {
       <div className="max-w-3xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-4">Fórum</h1>
 
-        {/* Botão Voltar para Cursos */}
         <div className="flex items-center justify-start mb-6">
           <button
             onClick={() => navigate('/home')}
@@ -178,14 +181,21 @@ export default function ForumPage() {
             <textarea
               className="w-full mb-3 p-3 rounded border border-blue-300 text-blue-900"
               placeholder="Responder..."
+              value={respostaTexto}
+              onChange={(e) => setRespostaTexto(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
-                  adicionarMensagem(e.target.value);
-                  e.target.value = '';
+                  enviarResposta();
                 }
               }}
             />
+            <button
+              onClick={enviarResposta}
+              className="bg-blue-700 text-white px-5 py-2 rounded hover:bg-blue-800 transition duration-300"
+            >
+              Enviar Resposta
+            </button>
           </div>
         )}
       </div>
