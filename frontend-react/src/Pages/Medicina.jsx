@@ -53,7 +53,7 @@ export default function Medicina() {
         <button onClick={() => window.location.href = '/filosofia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Filosofia</button>
         <button onClick={() => window.location.href = '/psicologia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Psicologia</button>
           <button onClick={() => window.location.href = '/tutoriais'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Tutoriais</button>
-          <button onClick={() => window.location.href = '/forumpage'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
+          <button onClick={() => window.location.href = '/forum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
           <button onClick={() => window.location.href = '/biomedicina'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Biomedicina</button>
         </div>
       </div>

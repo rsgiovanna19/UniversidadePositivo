@@ -53,7 +53,7 @@ export default function Filosofia() {
           <button onClick={() => window.location.href = '/medicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Medicina</button>
           <button onClick={() => window.location.href = '/psicologia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Psicologia</button>
           <button onClick={() => window.location.href = '/tutoriais'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Tutoriais</button>
-          <button onClick={() => window.location.href = '/forumpage'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
+          <button onClick={() => window.location.href = '/forum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
           <button onClick={() => window.location.href = '/bioFilosofia'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">BioFilosofia</button>
         </div>
       </div>

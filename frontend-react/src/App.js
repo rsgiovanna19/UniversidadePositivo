@@ -23,7 +23,7 @@ function App() {
         <Route path="/Psicologia" element={<Psicologia />} /> 
         <Route path="/Filosofia" element={<Filosofia />} />
         <Route path="/tutoriais" element={<Tutoriais />} />
-        <Route path="/forumpage" element={<ForumPage />} /> 
+        <Route path="/forum" element={<ForumPage />} /> 
         <Route path="/" element={<Login />} />
       </Routes>
     </BrowserRouter>

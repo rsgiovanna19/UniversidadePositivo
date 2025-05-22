@@ -40,7 +40,7 @@ export default function TutoriaisPage() {
         <button onClick={() => window.location.href = '/psicologia'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Psicologia</button>         
         <button onClick={() => window.location.href = '/medicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Medicina</button>        
         <button onClick={() => window.location.href = '/biomedicina'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Biomedicina</button>
-        <button onClick={() => window.location.href = '/forumpage'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Fórum</button>
+        <button onClick={() => window.location.href = '/forum'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Fórum</button>
       </div>
 
       <div className="p-8 max-w-4xl mx-auto">
