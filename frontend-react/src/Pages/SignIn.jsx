@@ -27,7 +27,7 @@ export default function SignIn() {
       return;
     }
     try {
-      await axios.post("http://localhost:5000/api/usuario", formData);    //vreificar erro
+      await axios.post("http://localhost:5000/api/usuarios", formData);    
       showMessage("Cadastro realizado com sucesso!");
       localStorage.setItem('userName', formData.nome);
       setFormData({ nome: '', email: '', senha: '' });

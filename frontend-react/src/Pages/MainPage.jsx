@@ -30,6 +30,15 @@ export default function MainPage() {
     <div className="min-h-screen flex flex-col bg-blue-900 text-blue-100">
       <Header /> {/* cabeçalho fixo no topo */}
 
+      {/* Botão Voltar para Home */}
+      <div className="flex justify-start px-8 mt-8 mb-4">
+        <button
+          onClick={() => navigate('/login')}
+          className="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-300"
+        >Sair
+        </button>
+      </div>
+
       <main className="px-6 py-12 flex-grow">
         <h4 className="text-5xl font-bold text-center mb-16">
           Bem-vindo à Universidade Positivo! Vamos começar?

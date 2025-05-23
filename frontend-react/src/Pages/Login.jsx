@@ -29,7 +29,10 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/usuario/validar-login", formData);
+      const response = await axios.post("http://localhost:5000/api/usuarios/login", {
+        Email: formData.email,
+        Senha: formData.senha
+      });
       const user = response.data;
 
       localStorage.setItem("userEmail", user.email);
@@ -39,7 +42,13 @@ export default function Login() {
       localStorage.setItem("userName", user.nome);
       navigate('/home');
     } catch (error) {
-      showError("Erro ao fazer login: " + (error.response?.data || error.message));
+      if (error.response?.data?.errors) {
+        const errorDetails = error.response.data.errors;
+        const messages = Object.values(errorDetails).flat().join(" | ");
+        showError("Erro ao fazer login: " + messages);
+      } else {
+        showError("Erro ao fazer login: " + (error.response?.data?.title || error.message));
+      }
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 
 function InputField({ label, id, type = "text", placeholder, value, onChange}) {
 
@@ -19,4 +19,4 @@ function InputField({ label, id, type = "text", placeholder, value, onChange}) {
   );
 }
 
-export default InputField;
+export default InputField;*/

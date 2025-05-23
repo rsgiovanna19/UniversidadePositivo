@@ -40,7 +40,7 @@ export default function TutoriaisPage() {
         <img src="/logo2.png" alt="EducaTech Logo" className="h-10 absolute left-4" />
         <button onClick={() => window.location.href = '/home'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Home</button>
         <button onClick={() => window.location.href = '/cursos'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Cursos</button>
-        <button onClick={() => window.location.href = '/Fórum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
+        <button onClick={() => window.location.href = '/forum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
       </div>
 
     {/* Botão Voltar para Home */}

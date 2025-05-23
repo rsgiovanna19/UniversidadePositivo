@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import axios from 'axios';
 
 function InputFieldCep({ label, id, type = "text", placeholder, setFormData, value, onChange }) {
@@ -49,3 +49,4 @@ function InputFieldCep({ label, id, type = "text", placeholder, setFormData, val
 }
 
 export default InputFieldCep;
+*/

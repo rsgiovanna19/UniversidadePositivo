@@ -19,7 +19,6 @@ namespace UniversidadePositivo.Data
                 .HasOne(r => r.Topico)
                 .WithMany(t => t.Respostas)
                 .HasForeignKey(r => r.TopicoId);
-
             base.OnModelCreating(modelBuilder);
         }
     }

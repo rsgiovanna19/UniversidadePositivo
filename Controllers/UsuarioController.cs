@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using UniversidadePositivo.Models; // Ajuste conforme seu namespace
-using UniversidadePositivo.Data;   // Ajuste conforme seu namespace
+using UniversidadePositivo.Models;
+using UniversidadePositivo.Data;
 using System.Linq;
 
 namespace UniversidadePositivo.Controllers
@@ -9,9 +9,8 @@ namespace UniversidadePositivo.Controllers
     [Route("api/usuarios")]
     public class UsuarioController : ControllerBase
     {
-        private readonly AppDbContext _context; // ✅ Adicionado o campo do contexto
+        private readonly AppDbContext _context;
 
-        // ✅ Construtor que recebe o contexto via injeção de dependência
         public UsuarioController(AppDbContext context)
         {
             _context = context;
@@ -30,5 +29,19 @@ namespace UniversidadePositivo.Controllers
             _context.SaveChanges();
             return Ok("Usuário cadastrado com sucesso!");
         }
+
+        // ✅ POST: api/usuarios/
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginDTO login)
+        {
+            var usuarioEncontrado = _context.Usuario
+                .FirstOrDefault(u => u.Email == login.Email && u.Senha == login.Senha);
+
+            if (usuarioEncontrado == null)
+                return NotFound("Email ou senha inválidos.");
+
+            return Ok(usuarioEncontrado);
+        }
+
     }
 }
