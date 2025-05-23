@@ -7,8 +7,8 @@ export default function MainPage() {
 
   const cards = [
     {
-      title: 'Tutoriais',
-      description: 'Aprenda com tutoriais passo a passo sobre linguagens de programação.',
+      title: 'A Universidade',
+      description: 'Conheça um pouco mais do seu futuro',
       image: '/tutoriais.png',
       route: '/tutoriais'
     },
@@ -20,7 +20,7 @@ export default function MainPage() {
     },
     {
       title: 'Fórum',
-      description: 'Tire dúvidas, compartilhe código e ajude outros estudantes.',
+      description: 'Tire dúvidas, compartilhe ideias e ajude outros estudantes.',
       image: '/forum.png',
       route: '/forum'
     }

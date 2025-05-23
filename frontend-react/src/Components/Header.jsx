@@ -1,3 +1,4 @@
+//cabeçalho - referenciado nas pages - menos no cursos pq achei feio
 export default function Header() {
   return (
     <header className="bg-blue-800 text-blue-100 px-6 py-4 flex items-center justify-between shadow-md">

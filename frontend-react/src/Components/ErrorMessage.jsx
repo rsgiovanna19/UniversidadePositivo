@@ -1,3 +1,5 @@
+/*dá o erro no login - cadastro caso esteja fora das alterações necessárias*/
+
 import { useEffect, useState } from "react";
 
 function ErrorMessage({ msg, onClose }) {

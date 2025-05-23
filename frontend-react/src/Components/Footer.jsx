@@ -1,3 +1,4 @@
+//final das páginas - referenciado em todas as pages 
 import React from 'react';
 
 export default function Footer() {

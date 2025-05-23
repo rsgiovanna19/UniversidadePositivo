@@ -4,46 +4,54 @@ import Footer from '../Components/Footer';
 
 export default function Filosofia() {
   const navigate = useNavigate();
-  const [CursoFilosofia, setFilosofiaSelecionado] = useState(null);
+  const [filosofiaSelecionada, setFilosofiaSelecionada] = useState(null);
   const [filtro, setFiltro] = useState('');
 
-  const Filosofia = [
+  const informacoesFilosofia = [
     {
-      titulo: 'Conheça a Filosofia',
-      descricao: 'O curso de Filosofia forma profissionais capacitados para atuar nas áreas de diagnóstico laboratorial, pesquisa científica, estética, entre outras, com uma base sólida em biologia, química e saúde humana.'
+      titulo: 'Conheça o curso de Filosofia',
+      descricao:
+        'O curso de Filosofia desenvolve o pensamento crítico, a argumentação lógica e a análise de ideias fundamentais que moldam a sociedade, preparando profissionais para atuar em educação, pesquisa, consultoria ética e cultural.',
     },
     {
-      titulo: 'Mercado de Trabalho da Filosofia',
-      descricao: 'O biomédico encontra oportunidades em hospitais, clínicas, laboratórios, indústria farmacêutica, centros de pesquisa, e também pode empreender em áreas como estética e análises clínicas.'
+      titulo: 'Mercado de trabalho',
+      descricao:
+        'O filósofo pode atuar como professor, pesquisador, consultor em empresas, editoras, instituições públicas e organizações não-governamentais, além de participar de debates éticos e culturais em diversos setores.',
     },
     {
-      titulo: 'Áreas de atuação da Filosofia',
-      descricao: 'As principais áreas incluem análises clínicas, biologia molecular, banco de sangue, imagem (como ressonância), reprodução humana, perícia criminal, estética, acupuntura e pesquisa científica.'
+      titulo: 'Áreas de atuação',
+      descricao:
+        'Educação, pesquisa acadêmica, consultoria ética, análise crítica de discursos, elaboração de políticas públicas e curadoria de conteúdos filosóficos e culturais.',
     },
     {
-      titulo: 'Diferenciais da Filosofia',
-      descricao: 'A Filosofia oferece estrutura de laboratórios modernos, professores com experiência de mercado, projetos de iniciação científica, foco em empreendedorismo e trilhas customizáveis de formação.'
+      titulo: 'Diferenciais do curso',
+      descricao:
+        'O curso oferece uma formação interdisciplinar, com professores experientes, incentivo à iniciação científica, projetos de extensão e debates filosóficos contemporâneos.',
     },
     {
-      titulo: 'Duração da Filosofia',
-      descricao: 'O curso de Filosofia tem duração média de 4 anos (8 semestres), com aulas teóricas e práticas em laboratório.'
+      titulo: 'Duração',
+      descricao:
+        'O curso de Filosofia tem duração de 4 anos (8 semestres), com disciplinas teóricas e optativas, trabalhos práticos e TCC.',
     },
     {
-      titulo: 'Mensalidade da Filosofia',
-      descricao: 'Quer saber o investimento da mensalidade do curso de Arquitetura e Urbanismo? Precisa de uma ajuda para pagar? Saiba mais. Conheça Bolsas e Descontos'
+      titulo: 'Mensalidade e bolsas',
+      descricao:
+        'Consulte a instituição para mais detalhes sobre a mensalidade. Há opções de bolsas e programas de incentivo financeiro.',
     },
     {
-      titulo: 'Trilhas Customizáveis na Filosofia',
-      descricao: 'O estudante pode escolher trilhas de especialização durante o curso, como Filosofia Estética, Análises Clínicas, Pesquisa Científica, Imagem, entre outras, moldando sua formação conforme seus interesses.'
+      titulo: 'Trilhas formativas',
+      descricao:
+        'O aluno pode focar em áreas como Filosofia Política, Ética, Estética, Lógica, História da Filosofia e Filosofia da Ciência.',
     },
     {
-      titulo: 'Coordenação da Filosofia',
-      descricao: 'O curso de Filosofia conta com uma coordenação qualificada, composta por mestres e doutores com ampla experiência acadêmica e profissional, disponíveis para orientação dos alunos durante toda a graduação.'
+      titulo: 'Coordenação',
+      descricao:
+        'Coordenação formada por doutores e mestres com ampla experiência em pesquisa e docência, orientando os alunos durante toda a graduação.',
     }
   ];
 
-  const FilosofiaFiltrados = Filosofia.filter(d =>
-    d.titulo.toLowerCase().includes(filtro.toLowerCase())
+  const filosofiaFiltrada = informacoesFilosofia.filter((item) =>
+    item.titulo.toLowerCase().includes(filtro.toLowerCase())
   );
 
   return (
@@ -58,37 +66,41 @@ export default function Filosofia() {
           <button onClick={() => window.location.href = '/forum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
         </div>
       </div>
-      {/* Botão Voltar para Home */}
+
+      {/* Botão Voltar */}
       <div className="flex justify-start px-8 mt-8 mb-4">
         <button
           onClick={() => navigate('/cursos')}
           className="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-300"
-        >Voltar
+        >
+          Voltar
         </button>
       </div>
+
+      {/* Conteúdo */}
       <div className="p-8 max-w-4xl mx-auto">
-        {!CursoFilosofia ? (
+        {!filosofiaSelecionada ? (
           <>
             <h1 className="text-3xl font-bold mb-2">Filosofia - Universidade Positivo</h1>
-            <p className="text-blue-800 mb-4">Explore e aprenda conceitos fundamentais da Filosofia por meio do nosso Curso!</p>
+            <p className="text-blue-800 mb-4">Explore e aprenda sobre o curso de Filosofia!</p>
             <input
               type="text"
-              placeholder="Pesquise sobre seu curso..."
+              placeholder="Pesquise sobre o curso..."
               className="w-full p-3 mb-6 rounded border border-blue-300 text-blue-900"
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
             />
             <div className="bg-white p-4 rounded-xl shadow max-h-[480px] overflow-y-auto">
               <ul className="space-y-4">
-                {FilosofiaFiltrados.map((pergunta, index) => (
+                {filosofiaFiltrada.map((item, index) => (
                   <li
                     key={index}
                     className="bg-blue-100 rounded-xl p-5 shadow hover:bg-blue-200 transition cursor-pointer flex justify-between items-center"
-                    onClick={() => setFilosofiaSelecionado(pergunta)}
+                    onClick={() => setFilosofiaSelecionada(item)}
                   >
                     <div>
-                      <h2 className="text-lg font-bold mb-1">{pergunta.titulo}</h2>
-                      <p className="text-sm text-blue-800">{pergunta.descricao}</p>
+                      <h2 className="text-lg font-bold mb-1">{item.titulo}</h2>
+                      <p className="text-sm text-blue-800">{item.descricao}</p>
                     </div>
                     <span className="text-xl text-blue-700">➤</span>
                   </li>
@@ -99,19 +111,17 @@ export default function Filosofia() {
         ) : (
           <div className="bg-white text-blue-900 p-6 rounded-xl shadow">
             <button
-              onClick={() => setFilosofiaSelecionado(null)}
+              onClick={() => setFilosofiaSelecionada(null)}
               className="text-sm text-blue-700 mb-4 hover:underline"
             >
               ← Voltar
             </button>
-            <h2 className="text-xl font-semibold mb-2">{CursoFilosofia.titulo}</h2>
-            <p className="text-blue-800 mb-4">{CursoFilosofia.descricao}</p>
-            <pre className="bg-blue-50 text-sm p-4 rounded overflow-auto text-blue-900 whitespace-pre-wrap font-mono">
-              {CursoFilosofia.resposta}
-            </pre>
+            <h2 className="text-xl font-semibold mb-2">{filosofiaSelecionada.titulo}</h2>
+            <p className="text-blue-800">{filosofiaSelecionada.descricao}</p>
           </div>
         )}
       </div>
+
       <Footer />
     </div>
   );

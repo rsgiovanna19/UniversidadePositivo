@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer';
 
 export default function ForumPage() {
-  const [novoTopico, setNovoTopico] = useState({ titulo: '', autor: '', mensagem: '' });
-  const [topicoSelecionado, setTopicoSelecionado] = useState(null);
-  const [topicos, setTopicos] = useState([
+  const navigate = useNavigate();
+
+  const topicosFixos = [
     {
       titulo: 'Quais são os campus disponíveis para o meu curso?',
       autor: 'Universidade Positivo',
@@ -22,11 +22,14 @@ export default function ForumPage() {
         'O Portal do Aluno e o app da Universidade também oferecem suporte e informações úteis.'
       ]
     }
-  ]);
-  const navigate = useNavigate();
+  ];
 
-  // Novo estado para controlar o texto da resposta
+  const [novoTopico, setNovoTopico] = useState({ titulo: '', autor: '', mensagem: '' });
+  const [topicoSelecionado, setTopicoSelecionado] = useState(null);
+  const [topicosAPI, setTopicosAPI] = useState([]);
   const [respostaTexto, setRespostaTexto] = useState('');
+
+  const topicosCompletos = [...topicosFixos, ...topicosAPI];
 
   useEffect(() => {
     const fetchTopicos = async () => {
@@ -41,9 +44,7 @@ export default function ForumPage() {
           autor: t.autor,
           mensagens: [t.conteudo || '']
         }));
-        if (topicosFormatados.length > 0) {
-          setTopicos(topicosFormatados);
-        }
+        setTopicosAPI(topicosFormatados);
       } catch (error) {
         console.error("Erro ao carregar os tópicos:", error);
       }
@@ -54,30 +55,34 @@ export default function ForumPage() {
 
   const adicionarTopico = async () => {
     if (!novoTopico.titulo || !novoTopico.autor || !novoTopico.mensagem) return;
+
     const novoTopicoParaEnviar = {
       titulo: novoTopico.titulo,
       conteudo: novoTopico.mensagem,
       autor: novoTopico.autor
     };
+
     try {
       const response = await fetch("http://localhost:5000/api/Topico", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novoTopicoParaEnviar)
       });
+
       if (!response.ok) {
         throw new Error("Erro ao salvar o tópico");
       }
+
       const topicoSalvo = await response.json();
-      setTopicos([
-        ...topicos,
-        {
-          titulo: topicoSalvo.titulo,
-          autor: topicoSalvo.autor,
-          mensagens: [topicoSalvo.conteudo]
-        }
-      ]);
+      const novo = {
+        titulo: topicoSalvo.titulo,
+        autor: topicoSalvo.autor,
+        mensagens: [topicoSalvo.conteudo]
+      };
+
+      setTopicosAPI(prev => [...prev, novo]);
       setNovoTopico({ titulo: '', autor: '', mensagem: '' });
+
     } catch (error) {
       console.error("Erro ao salvar no banco:", error);
     }
@@ -85,9 +90,18 @@ export default function ForumPage() {
 
   const adicionarMensagem = (mensagem) => {
     if (!mensagem) return;
-    const novosTopicos = [...topicos];
-    novosTopicos[topicoSelecionado].mensagens.push(mensagem);
-    setTopicos(novosTopicos);
+
+    const todosTopicos = [...topicosFixos, ...topicosAPI];
+
+    const index = topicoSelecionado;
+    if (index < topicosFixos.length) {
+      topicosFixos[index].mensagens.push(mensagem);
+    } else {
+      const relativeIndex = index - topicosFixos.length;
+      const atualizados = [...topicosAPI];
+      atualizados[relativeIndex].mensagens.push(mensagem);
+      setTopicosAPI(atualizados);
+    }
   };
 
   const enviarResposta = () => {
@@ -106,7 +120,8 @@ export default function ForumPage() {
       </div>
 
       <div className="max-w-3xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-4">Fórum</h1>
+        <h1 className="text-4xl font-bold mb-4">Fórum</h1>
+        <h4 className="text-1xl font-bold mb-4">Converse aqui com seus colegas!</h4>
 
         <div className="flex items-center justify-start mb-6">
           <button
@@ -148,7 +163,7 @@ export default function ForumPage() {
             </div>
 
             <div className="space-y-5">
-              {topicos.map((t, i) => (
+              {topicosCompletos.map((t, i) => (
                 <div
                   key={i}
                   onClick={() => setTopicoSelecionado(i)}
@@ -169,10 +184,10 @@ export default function ForumPage() {
               <span className="text-lg">←</span>
               <span>Voltar</span>
             </button>
-            <h2 className="text-2xl font-bold mb-2">{topicos[topicoSelecionado].titulo}</h2>
-            <p className="mb-6 text-blue-700">por {topicos[topicoSelecionado].autor}</p>
+            <h2 className="text-2xl font-bold mb-2">{topicosCompletos[topicoSelecionado].titulo}</h2>
+            <p className="mb-6 text-blue-700">por {topicosCompletos[topicoSelecionado].autor}</p>
             <div className="space-y-4 mb-6 max-h-72 overflow-y-auto">
-              {topicos[topicoSelecionado].mensagens.map((msg, i) => (
+              {topicosCompletos[topicoSelecionado].mensagens.map((msg, i) => (
                 <div key={i} className="bg-blue-100 p-3 rounded text-blue-900">
                   {msg}
                 </div>

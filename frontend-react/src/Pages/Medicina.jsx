@@ -4,73 +4,78 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Medicina() {
   const navigate = useNavigate();
-  const [CursoMed, setMedSelecionado] = useState(null);
+  const [Medicina, setMedicina] = useState(null);
   const [filtro, setFiltro] = useState('');
 
-  const Medicina = [
+  const dadosMedicina = [
     {
       titulo: 'Conheça a Medicina',
       descricao: 'O curso de Medicina forma profissionais capacitados para atuar nas áreas de diagnóstico laboratorial, pesquisa científica, estética, entre outras, com uma base sólida em biologia, química e saúde humana.'
     },
     {
       titulo: 'Mercado de Trabalho da Medicina',
-      descricao: 'O biomédico encontra oportunidades em hospitais, clínicas, laboratórios, indústria farmacêutica, centros de pesquisa, e também pode empreender em áreas como estética e análises clínicas.'
+      descricao: 'O médico encontra oportunidades em hospitais, clínicas, laboratórios, indústria farmacêutica, centros de pesquisa, e também pode empreender em áreas como estética e análises clínicas.'
     },
     {
       titulo: 'Áreas de atuação da Medicina',
-      descricao: 'As principais áreas incluem análises clínicas, biologia molecular, banco de sangue, imagem (como ressonância), reprodução humana, perícia criminal, estética, acupuntura e pesquisa científica.'
+      descricao: 'As principais áreas incluem clínica médica, cirurgia, pediatria, ginecologia, psiquiatria, dermatologia, medicina estética, entre outras.'
     },
     {
       titulo: 'Diferenciais da Medicina',
-      descricao: 'A Medicina oferece estrutura de laboratórios modernos, professores com experiência de mercado, projetos de iniciação científica, foco em empreendedorismo e trilhas customizáveis de formação.'
+      descricao: 'O curso oferece laboratórios modernos, professores com experiência de mercado, projetos de iniciação científica e trilhas customizáveis de formação.'
     },
     {
       titulo: 'Duração da Medicina',
-      descricao: 'O curso de Medicina tem duração média de 4 anos (8 semestres), com aulas teóricas e práticas em laboratório.'
+      descricao: 'O curso de Medicina tem duração média de 6 anos, com aulas teóricas e práticas em laboratório e hospitais-escola.'
     },
     {
       titulo: 'Mensalidade da Medicina',
-      descricao: 'Quer saber o investimento da mensalidade do curso de Arquitetura e Urbanismo? Precisa de uma ajuda para pagar? Saiba mais. Conheça Bolsas e Descontos'
+      descricao: 'Quer saber o valor da mensalidade do curso de Medicina? Precisa de ajuda para pagar? Conheça Bolsas e Descontos disponíveis.'
     },
     {
       titulo: 'Trilhas Customizáveis na Medicina',
-      descricao: 'O estudante pode escolher trilhas de especialização durante o curso, como Medicina Estética, Análises Clínicas, Pesquisa Científica, Imagem, entre outras, moldando sua formação conforme seus interesses.'
+      descricao: 'O estudante pode escolher trilhas de especialização, como Medicina Estética, Cirurgia, Clínica Geral, Pesquisa Científica, entre outras.'
     },
     {
       titulo: 'Coordenação da Medicina',
-      descricao: 'O curso de Medicina conta com uma coordenação qualificada, composta por mestres e doutores com ampla experiência acadêmica e profissional, disponíveis para orientação dos alunos durante toda a graduação.'
+      descricao: 'O curso conta com coordenação qualificada, composta por mestres e doutores com ampla experiência acadêmica e profissional.'
     }
   ];
 
-  const MedicinaFiltrados = Medicina.filter(d =>
-    d.titulo.toLowerCase().includes(filtro.toLowerCase())
+  const dadosFiltrados = dadosMedicina.filter(item =>
+    item.titulo.toLowerCase().includes(filtro.toLowerCase())
   );
 
   return (
     <div className="min-h-screen bg-blue-50 text-blue-900">
       {/* Navbar */}
-      <div className="w-full bg-blue-700 p-4 flex items-center justify-between shadow-md sticky top-0 z-50 text-white">
+      <header className="w-full bg-blue-700 p-4 flex items-center justify-between shadow-md sticky top-0 z-50 text-white">
         <img src="/logo2.png" alt="Logo" className="h-10" />
-        <div className="flex-1 flex justify-center gap-4">
-          <button onClick={() => window.location.href = '/home'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Home</button>
-          <button onClick={() => window.location.href = '/tutoriais'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Tutoriais</button>
-          <button onClick={() => window.location.href = '/cursos'} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Cursos</button>
-          <button onClick={() => window.location.href = '/forum'} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
-        </div>
-      </div>
-  {/* Botão Voltar para Home */}
+        <nav className="flex-1 flex justify-center gap-4">
+          <button onClick={() => navigate('/home')} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Home</button>
+          <button onClick={() => navigate('/tutoriais')} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Tutoriais</button>
+          <button onClick={() => navigate('/cursos')} className="text-white hover:bg-white hover:text-black px-4 py-2 rounded transition">Cursos</button>
+          <button onClick={() => navigate('/forum')} className="hover:bg-white hover:text-blue-700 px-4 py-2 rounded transition">Fórum</button>
+        </nav>
+      </header>
+
+      {/* Botão Voltar */}
       <div className="flex justify-start px-8 mt-8 mb-4">
         <button
           onClick={() => navigate('/cursos')}
           className="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-300"
-        >Voltar
+        >
+          Voltar
         </button>
       </div>
-      <div className="p-8 max-w-4xl mx-auto">
-        {!CursoMed ? (
+
+      {/* Conteúdo principal */}
+      <main className="p-8 max-w-4xl mx-auto">
+        {!Medicina ? (
           <>
             <h1 className="text-3xl font-bold mb-2">Medicina - Universidade Positivo</h1>
-            <p className="text-blue-800 mb-4">Explore e aprenda conceitos fundamentais da Medicina por meio do nosso Curso!</p>
+            <p className="text-blue-800 mb-4">Explore e aprenda conceitos fundamentais da Medicina por meio do nosso curso!</p>
+
             <input
               type="text"
               placeholder="Pesquise sobre seu curso..."
@@ -81,15 +86,15 @@ export default function Medicina() {
 
             <div className="bg-white p-4 rounded-xl shadow max-h-[480px] overflow-y-auto">
               <ul className="space-y-4">
-                {MedicinaFiltrados.map((pergunta, index) => (
+                {dadosFiltrados.map((item, index) => (
                   <li
                     key={index}
                     className="bg-blue-100 rounded-xl p-5 shadow hover:bg-blue-200 transition cursor-pointer flex justify-between items-center"
-                    onClick={() => setMedSelecionado(pergunta)}
+                    onClick={() => setMedicina(item)}
                   >
                     <div>
-                      <h2 className="text-lg font-bold mb-1">{pergunta.titulo}</h2>
-                      <p className="text-sm text-blue-800">{pergunta.descricao}</p>
+                      <h2 className="text-lg font-bold mb-1">{item.titulo}</h2>
+                      <p className="text-sm text-blue-800">{item.descricao}</p>
                     </div>
                     <span className="text-xl text-blue-700">➤</span>
                   </li>
@@ -100,18 +105,18 @@ export default function Medicina() {
         ) : (
           <div className="bg-white text-blue-900 p-6 rounded-xl shadow">
             <button
-              onClick={() => setMedSelecionado(null)}
+              onClick={() => setMedicina(null)}
               className="text-sm text-blue-700 mb-4 hover:underline"
             >
               ← Voltar
             </button>
-            <h2 className="text-xl font-semibold mb-2">{CursoMed.titulo}</h2>
-            <p className="text-blue-800 mb-4">{CursoMed.descricao}</p>
+            <h2 className="text-xl font-semibold mb-2">{Medicina.titulo}</h2>
+            <p className="text-blue-800 mb-4">{Medicina.descricao}</p>
           </div>
         )}
-      </div>
+      </main>
+
       <Footer />
     </div>
   );
 }
-
