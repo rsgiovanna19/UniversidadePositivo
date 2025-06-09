@@ -1,3 +1,7 @@
 ## PROJECT BASED ON COLLEGE ACTIVITIES ##
 
-USING "SECOND" BRANCH TO CURRENT WORKING ON!!
+Activities 
+
+- align itens with professor according with skeleton
+- add security points (passwordHasher and TokenGenerator)
+- clean code
