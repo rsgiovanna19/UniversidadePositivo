@@ -2,6 +2,6 @@
 
 Activities 
 
-- align itens with professor according with skeleton
+- align itens according w/ skeleton professor specifications
 - add security points (passwordHasher and TokenGenerator)
 - clean code
