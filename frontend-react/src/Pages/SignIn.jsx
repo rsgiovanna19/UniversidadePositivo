@@ -115,7 +115,7 @@ export default function SignIn() {
             </div>
 
             <div>
-              <label className="block text-sm text-gray-700 mb-1">Email institucional</label>
+              <label className="block text-sm text-gray-700 mb-1">Email</label>
               <input
                 type="email"
                 value={formData.email}

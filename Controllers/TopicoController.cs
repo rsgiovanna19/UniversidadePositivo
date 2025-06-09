@@ -3,19 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using UniversidadePositivo.Data;
 using UniversidadePositivo.Models;
 
+//gerenciamento dos tópicos do fórum
 namespace UniversidadePositivo.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    [ApiController]     //gerenciamento dos tópicos no banco de dados 
+    [Route("api/[controller]")] 
     public class TopicoController : ControllerBase
     {
         private readonly AppDbContext _context;
-
         public TopicoController(AppDbContext context)
         {
             _context = context;
         }
-
+//apresenta todos tópicos, inclusive em ordem de criação (ordem decrescente)
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Topico>>> GetTopicos()
         {
@@ -23,7 +23,7 @@ namespace UniversidadePositivo.Controllers
                                          .OrderByDescending(t => t.DataCriacao)
                                          .ToListAsync();
         }
-
+//requisicao get dos tópico por ID 
         [HttpGet("{id}")]
         public async Task<ActionResult<Topico>> GetTopico(int id)
         {
@@ -31,7 +31,7 @@ namespace UniversidadePositivo.Controllers
                                                .FirstOrDefaultAsync(t => t.Id == id);
             return topico == null ? NotFound() : topico;
         }
-
+//requisição post para postagem dos tópicos
         [HttpPost]
         public async Task<ActionResult<Topico>> PostTopico(Topico topico)
         {
@@ -39,7 +39,7 @@ namespace UniversidadePositivo.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetTopico), new { id = topico.Id }, topico);
         }
-
+//postagem/atualização dos tópicos por id 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTopico(int id, Topico topico)
         {
@@ -50,7 +50,7 @@ namespace UniversidadePositivo.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
-
+//caso haja necessidade, exclusão de algum tópico por requisição delete pelo ID dele
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTopico(int id)
         {

@@ -121,15 +121,15 @@ export default function Login() {
           </div>
 
           <h2 className="text-3xl font-semibold text-blue-900 text-center mb-4">
-            Acesso ao Sistema
+            Universidade Positivo
           </h2>
           <p className="text-center text-gray-500 mb-8">
-            Faça login com suas credenciais institucionais
+            Faça login com suas credenciais
           </p>
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-sm text-gray-700 mb-1">Email institucional</label>
+              <label className="block text-sm text-gray-700 mb-1">Email</label>
               <input
                 type="email"
                 value={formData.email}
