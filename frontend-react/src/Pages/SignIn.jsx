@@ -27,19 +27,46 @@ export default function SignIn() {
       return;
     }
     try {
-      await axios.post("http://localhost:5000/api/usuarios", formData);    
+      await axios.post("http://localhost:5000/api/usuarios/register", formData);
       showMessage("Cadastro realizado com sucesso!");
       localStorage.setItem('userName', formData.nome);
       setFormData({ nome: '', email: '', senha: '' });
       clearError();
       setTimeout(() => navigate('/login'), 1500);
     } catch (error) {
-      showError("Erro ao cadastrar: " + (error.response?.data || error.message));
+      console.error("Erro completo do backend:", error.response);
+      let friendlyErrorMessage = "Erro ao cadastrar. Tente novamente.";
+
+      if (error.response) {
+        const apiError = error.response.data;
+        if (apiError.errors) {
+          if (apiError.errors.Senha && apiError.errors.Senha[0]) {
+            friendlyErrorMessage = `Erro na Senha: ${apiError.errors.Senha[0]}`;
+          } else {
+            const allValidationErrors = Object.values(apiError.errors)
+              .flat()
+              .join("; ");
+            friendlyErrorMessage = `Erro de validação: ${allValidationErrors}`;
+          }
+        } else if (apiError.message) {
+          friendlyErrorMessage = `Erro ao cadastrar: ${apiError.message}`;
+        } else if (apiError.Message) {
+          friendlyErrorMessage = `Erro ao cadastrar: ${apiError.Message}`;
+        } else {
+          friendlyErrorMessage = `Erro da API: ${JSON.stringify(apiError)}`;
+        }
+      } else if (error.request) {
+        friendlyErrorMessage = "Não foi possível conectar ao servidor. Verifique sua conexão ou tente mais tarde.";
+      } else {
+        friendlyErrorMessage = `Erro na requisição: ${error.message}`;
+      }
+
+      showError(friendlyErrorMessage);
     }
   };
 
   return (
-    <div className="min-h-screen  bg-blue-700 flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-blue-700 flex items-center justify-center px-4 py-8">
       {errorMsg && <ErrorMessage msg={errorMsg} onClose={clearError} />}
       {message && <Message msg={message} onClose={clearMessage} />}
 

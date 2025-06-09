@@ -22,6 +22,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    clearError(); // Limpa erros anteriores ao tentar novamente
 
     if (!formData.email || !formData.senha) {
       showError("Todos os campos são obrigatórios.");
@@ -30,25 +31,61 @@ export default function Login() {
 
     try {
       const response = await axios.post("http://localhost:5000/api/usuarios/login", {
-        Email: formData.email,
-        Senha: formData.senha
+        Email: formData.email, // Corresponde ao LoginRequest do C#
+        Senha: formData.senha  // Corresponde ao LoginRequest do C#
       });
-      const user = response.data;
 
-      localStorage.setItem("userEmail", user.email);
-      localStorage.setItem("logado", true);
-      localStorage.setItem("userType", user.tipo);
-      localStorage.setItem("user", user.id);
-      localStorage.setItem("userName", user.nome);
-      navigate('/home');
+      const authData = response.data; // A API retorna AuthResponse
+
+      // Armazenar o token JWT e outras informações do usuário
+      localStorage.setItem("authToken", authData.token); // <-- ARMAZENAR O TOKEN AQUI!
+      localStorage.setItem("userEmail", formData.email); // O email é do formData para garantir
+      localStorage.setItem("logado", "true"); // Armazena como string "true"
+      localStorage.setItem("userName", authData.userName); // Nome do usuário vindo da API
+      localStorage.setItem("userId", authData.userId); // ID do usuário vindo da API
+
+      // Se sua API retornar 'tipo', você pode armazenar também.
+      // if (authData.userType) { // Assumindo que 'userType' seria um campo no AuthResponse
+      //   localStorage.setItem("userType", authData.userType);
+      // }
+
+      navigate('/home'); // Redireciona para a página inicial
     } catch (error) {
-      if (error.response?.data?.errors) {
-        const errorDetails = error.response.data.errors;
-        const messages = Object.values(errorDetails).flat().join(" | ");
-        showError("Erro ao fazer login: " + messages);
+      console.error("Erro completo no login:", error.response); // Útil para depuração
+
+      let friendlyErrorMessage = "Ocorreu um erro ao tentar fazer login. Tente novamente."; // Mensagem padrão
+
+      if (error.response) {
+        // Erros de status HTTP como 401, 400, 404
+        if (error.response.status === 401) {
+          // Captura a mensagem específica do 401 Unauthorized do backend
+          // Seu backend retorna "Email ou senha inválidos." para 401
+          friendlyErrorMessage = error.response.data?.message || "Email ou senha inválidos.";
+        } else if (error.response.data && error.response.data.errors) {
+          // Erros de validação (como os de MinLength no cadastro, que poderiam ocorrer no login)
+          const allValidationErrors = Object.values(error.response.data.errors)
+            .flat()
+            .join(" | ");
+          friendlyErrorMessage = `Erro de validação: ${allValidationErrors}`;
+        } else if (error.response.data && (error.response.data.message || error.response.data.Message)) {
+          // Mensagens de erro personalizadas da API
+          friendlyErrorMessage = error.response.data.message || error.response.data.Message;
+        } else if (error.response.data && error.response.data.title) {
+          // Título de erros de problema (RFC 7807)
+          friendlyErrorMessage = `Erro da API: ${error.response.data.title}`;
+        } else {
+          // Erro de status HTTP genérico com corpo de resposta desconhecido
+          friendlyErrorMessage = `Erro no servidor: ${error.response.status} - ${error.response.statusText}`;
+        }
+      } else if (error.request) {
+        // A requisição foi feita, mas não houve resposta (servidor offline, rede)
+        friendlyErrorMessage = "Não foi possível conectar ao servidor. Verifique sua conexão ou tente novamente.";
       } else {
-        showError("Erro ao fazer login: " + (error.response?.data?.title || error.message));
+        // Algo aconteceu na configuração da requisição que disparou um erro
+        friendlyErrorMessage = `Erro na requisição: ${error.message}`;
       }
+      
+      showError(friendlyErrorMessage);
     }
   };
 
