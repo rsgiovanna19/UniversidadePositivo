@@ -76,8 +76,8 @@ namespace UniversidadePositivo.Controllers
                 UserName = usuarioEncontrado.Nome
             });
         }
-        [HttpGet("protected")]  //protected pois o endpoint é somente acessado com o token JWT - mostrar no swagger
-        [Authorize] // Este atributo p proteger o endpoint (sugestão da IA)
+        [HttpGet("protected")]  //protected pois o endpoint é somente acessado com o token - mostrar no swagger um exemplo
+        [Authorize] 
         public IActionResult GetProtectedData() //retorno de msg pela IActionResult
         {
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;   //ID 

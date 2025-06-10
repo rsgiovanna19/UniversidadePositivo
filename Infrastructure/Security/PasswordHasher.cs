@@ -1,7 +1,6 @@
-// security/PasswordHasher.cs
-using BCrypt.Net;
+//utilização do password hasher - visualização no banco de dados
 
-namespace UniversidadePositivo.security // <-- IMPORTANTE: Seu namespace aqui
+namespace UniversidadePositivo.security
 {
     public class PasswordHasher
     {

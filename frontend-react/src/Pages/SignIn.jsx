@@ -7,6 +7,7 @@ import ErrorMessage from '../Components/ErrorMessage';
 import Message from '../Components/Message';
 import { motion } from 'framer-motion';
 
+//animações - assim como o login
 const containerVariants = {
   hidden: { opacity: 0, scale: 0.98, y: 30 },
   visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
@@ -37,6 +38,7 @@ export default function SignIn() {
       console.error("Erro completo do backend:", error.response);
       let friendlyErrorMessage = "Erro ao cadastrar. Tente novamente.";
 
+      //casos de erro: 
       if (error.response) {
         const apiError = error.response.data;
         if (apiError.errors) {
@@ -60,11 +62,11 @@ export default function SignIn() {
       } else {
         friendlyErrorMessage = `Erro na requisição: ${error.message}`;
       }
-
       showError(friendlyErrorMessage);
     }
   };
 
+  //visual do sign in
   return (
     <div className="min-h-screen bg-blue-700 flex items-center justify-center px-4 py-8">
       {errorMsg && <ErrorMessage msg={errorMsg} onClose={clearError} />}
@@ -142,7 +144,7 @@ export default function SignIn() {
             </button>
 
             <p className="text-center text-sm text-gray-600">
-              Já possui uma conta? <a href="/login" className="underline text-[#1976d2]">Entrar</a>
+              Já possui uma conta? <a href="/login" className="underline text-[#1976d2]">Entrar</a> 
             </p>
           </form>
         </div>

@@ -5,6 +5,7 @@ import Footer from '../Components/Footer';
 export default function MainPage() {
   const navigate = useNavigate();
 
+  //opções na main page - principal
   const cards = [
     {
       title: 'A Universidade',
@@ -26,6 +27,7 @@ export default function MainPage() {
     }
   ];
 
+  //atualizações visuais da main
   return (
     <div className="min-h-screen flex flex-col bg-blue-900 text-blue-100">
       <Header /> {/* cabeçalho fixo no topo */}

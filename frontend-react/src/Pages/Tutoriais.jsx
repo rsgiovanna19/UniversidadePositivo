@@ -7,6 +7,7 @@ export default function CursosPage() {
   const [cursoSelecionado, setCursoSelecionado] = useState(null);
   const [filtro, setFiltro] = useState('');
 
+  //pontos fixos - como perguntas frequentes 
   const cursos = [
     {
       titulo: 'Por que estudar na Universidade Positivo?',

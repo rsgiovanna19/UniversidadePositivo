@@ -10,6 +10,7 @@ import CursosPage from './Pages/CursosPage';
 import Tutoriais from './Pages/Tutoriais';
 import ForumPage from './Pages/ForumPage';
 
+//rotas
 function App() {
   return (
     <BrowserRouter>

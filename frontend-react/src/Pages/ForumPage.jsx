@@ -5,6 +5,7 @@ import Footer from '../Components/Footer';
 export default function ForumPage() {
   const navigate = useNavigate();
 
+  //perguntas fixas da Universidade Positivo
   const topicosFixos = [
     {
       titulo: 'Quais são os campus disponíveis para o meu curso?',
@@ -49,7 +50,6 @@ export default function ForumPage() {
         console.error("Erro ao carregar os tópicos:", error);
       }
     };
-
     fetchTopicos();
   }, []);
 
@@ -110,6 +110,7 @@ export default function ForumPage() {
     setRespostaTexto('');
   };
 
+  //atualizações visuais do código
   return (
     <div className="min-h-screen bg-blue-50 text-blue-900">
       <div className="w-full bg-blue-700 p-4 flex justify-center items-center gap-8 shadow-md sticky top-0 z-50 text-white">

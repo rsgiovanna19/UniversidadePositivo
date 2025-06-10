@@ -1,10 +1,10 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using UniversidadePositivo.Data;
-using UniversidadePositivo.security; // Importe o namespace da sua pasta security
-using Microsoft.AspNetCore.Authentication.JwtBearer; // Para JWT
-using Microsoft.IdentityModel.Tokens; // Para SymmetricSecurityKey e TokenValidationParameters
-using System.Text; // Para Encoding.UTF8
+using UniversidadePositivo.security;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -16,10 +16,6 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
-// ********************************************************************************
-// Adicionar as classes de segurança para injeção de dependência
-// PasswordHasher tem métodos estáticos, então não precisa ser injetado, mas TokenGenerator precisa.
 builder.Services.AddScoped<TokenGenerator>(); // Registra TokenGenerator como um serviço
 
 // Configuração do JWT Authentication
@@ -39,11 +35,9 @@ builder.Services.AddAuthentication(options =>
 
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        // A chave de assinatura para validar o token. Garanta que ela não seja nula.
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException("JWT Key not configured in appsettings.json.")))
     };
 });
-// ********************************************************************************
 
 // Controllers com configuração de JSON (evita ciclos de referência)
 builder.Services.AddControllers()
@@ -53,7 +47,7 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.WriteIndented = true;
     });
 
-// Swagger/OpenAPI
+// Swagger/OpenAPI - para utilização
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -64,8 +58,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "API para gerenciamento UP"
     });
 
-    // ********************************************************************************
-    // Configuração para o Swagger reconhecer e enviar o token JWT
+    // Configuração para o Swagger reconhecer e enviar o token JWT - apresentar em sala de aula ex prático
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -90,18 +83,16 @@ builder.Services.AddSwaggerGen(options =>
             Array.Empty<string>()
         }
     });
-    // ********************************************************************************
 });
 
 // CORS – Libera acesso externo à API
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
-        policy.AllowAnyOrigin() // Em produção, considere restringir para URLs específicas!
+        policy.AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader());
 });
-
 var app = builder.Build();
 
 // Swagger e página de documentação
@@ -125,13 +116,10 @@ else
 app.UseRouting(); // Adicionado explicitamente para melhor controle de rotas
 app.UseCors("AllowAll");
 
-// ********************************************************************************
-// A ordem é CRÍTICA aqui!
 app.UseAuthentication(); // Deve vir ANTES de UseAuthorization
 app.UseAuthorization();
-// ********************************************************************************
 
-app.UseStaticFiles(); // Geralmente usado para arquivos estáticos, pode vir antes ou depois da autenticação/autorização dependendo do que você serve.
+app.UseStaticFiles();
 app.MapControllers();
 
 app.Run();

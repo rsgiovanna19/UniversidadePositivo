@@ -1,5 +1,4 @@
-using System;
-
+//atributos para a classe resposta
 namespace UniversidadePositivo.Models
 {
 public class Resposta

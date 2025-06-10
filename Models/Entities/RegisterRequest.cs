@@ -1,6 +1,6 @@
+//API aguarda estas infos para a criação de um novo usuário + validação das regras para novo registro 
 
 using System.ComponentModel.DataAnnotations;
-
 public class RegisterRequest
     {
         [Required]
@@ -14,7 +14,3 @@ public class RegisterRequest
         [MinLength(6)] // Exemplo: senha mínima de 6 caracteres
         public string Senha { get; set; } = string.Empty;
     }
-
-internal class EmailAddressAttribute : Attribute
-{
-}

@@ -1,4 +1,4 @@
-    //usuario para login ou chamada ja existente
+    //atributos para a classe login
     public class Usuario
     {
         public int Id { get; set; } //chave primária p db

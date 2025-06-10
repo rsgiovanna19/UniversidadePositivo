@@ -1,3 +1,4 @@
+//pagina que centraliza todos os cursos propostos pela Universidade Positivo
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer';
 

@@ -1,11 +1,11 @@
-// security/TokenGenerator.cs
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
-namespace UniversidadePositivo.security // Garanta que este namespace está correto para seu projeto
+//utilização do tokenGenerator - visualização no swagger
+
+namespace UniversidadePositivo.security 
 {
     public class TokenGenerator
     {
@@ -15,9 +15,7 @@ namespace UniversidadePositivo.security // Garanta que este namespace está corr
         {
             _configuration = configuration;
         }
-
-        // ALTERE ESTA LINHA PARA INCLUIR 'string userEmail'
-        public string GenerateToken(string userId, string userName, string userEmail) // <-- ADICIONADO userEmail
+        public string GenerateToken(string userId, string userName, string userEmail) //parametros do usuario
         {
             var jwtKey = _configuration["Jwt:Key"];
             var jwtIssuer = _configuration["Jwt:Issuer"];
@@ -27,24 +25,20 @@ namespace UniversidadePositivo.security // Garanta que este namespace está corr
             {
                 throw new InvalidOperationException("JWT configuration (Key, Issuer, Audience) is missing or empty.");
             }
-
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            // Adicione as informações que você quer que o token carregue
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, userId), // ID do usuário
-                new Claim(ClaimTypes.Name, userName),        // Nome do usuário
-                new Claim(ClaimTypes.Email, userEmail)       // <-- ADICIONADA ESTA LINHA
-                // Adicione outras claims conforme necessário (ex: ClaimTypes.Role para roles)
+                //adicionar conforme necessário - parametros que serão utilizados junto ao tokenGenerator
+                new Claim(ClaimTypes.NameIdentifier, userId),
+                new Claim(ClaimTypes.Name, userName),        
+                new Claim(ClaimTypes.Email, userEmail)      
             };
-
             var token = new JwtSecurityToken(
                 issuer: jwtIssuer,
                 audience: jwtAudience,
                 claims: claims,
-                expires: DateTime.Now.AddHours(2), // Token expira em 2 horas (ajuste conforme necessário)
+                expires: DateTime.Now.AddHours(9000), // Token expira em 9000 horas
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
