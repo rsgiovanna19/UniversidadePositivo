@@ -7,6 +7,7 @@ export default function Biomedicina() {
   const [Biomed, setBiomed] = useState(null);
   const [filtro, setFiltro] = useState('');
 
+  //conteúdo dos cursos
   const conteudoBiomedicina = [
     {
       titulo: 'Conheça a Biomedicina',
@@ -46,6 +47,7 @@ export default function Biomedicina() {
     item.titulo.toLowerCase().includes(filtro.toLowerCase())
   );
 
+  //atualizações visuais do site
   return (
     <div className="min-h-screen bg-blue-50 text-blue-900">
       {/* Navbar */}

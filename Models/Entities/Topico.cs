@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-
+//atributos para a classe topicos
 namespace UniversidadePositivo.Models
 {
 public class Topico
